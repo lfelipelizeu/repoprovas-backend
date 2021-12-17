@@ -1,14 +1,14 @@
 /* eslint-disable indent */
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('classes')
-export default class Class {
+@Entity('subjects')
+export default class SubjectEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    subject_id: number;
+    name: string;
 
     @Column()
-    professor_id: number;
+    period: number;
 }

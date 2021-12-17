@@ -1,14 +1,11 @@
 /* eslint-disable indent */
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('subjects')
-export default class Subject {
+@Entity('categories')
+export default class CategoryEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
     name: string;
-
-    @Column()
-    period: number;
 }
