@@ -10,6 +10,6 @@ export async function getSubjects(req: Request, res: Response) {
         return res.status(200).send(subjects);
     } catch (error) {
         console.error(error);
-        return res.sendStatus(500);
+        return res.status(500).send('Erro desconhecido!');
     }
 }

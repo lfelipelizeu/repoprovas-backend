@@ -20,6 +20,6 @@ export async function createTest(req: Request, res: Response) {
         if (error instanceof Conflict) return res.status(409).send(error.message);
 
         console.error(error);
-        return res.sendStatus(500);
+        return res.status(500).send('Erro desconhecido!');
     }
 }
