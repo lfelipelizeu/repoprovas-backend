@@ -4,6 +4,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import 'reflect-metadata';
 import * as classController from './controllers/classController';
+import * as testController from './controllers/testController';
 import * as subjectController from './controllers/subjectController';
 
 import connectDatabase from './database';
@@ -16,6 +17,7 @@ app.get('/health', (req: Request, res: Response) => res.status(200).send('It\'s 
 
 app.get('/subjects', subjectController.getSubjects);
 app.get('/classes', classController.getClasses);
+app.post('/tests', testController.createTest);
 
 export async function init() {
     await connectDatabase();
