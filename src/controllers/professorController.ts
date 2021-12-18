@@ -7,7 +7,9 @@ export async function getProfessors(req: Request, res: Response) {
     try {
         const professors = await professorService.getProfessors();
 
-        return res.status(200).send(professors);
+        const professorsWithTestCount = await professorService.countTestsOnDatabase(professors);
+
+        return res.status(200).send(professorsWithTestCount);
     } catch (error) {
         console.error(error);
         return res.status(500).send('Erro desconhecido!');
