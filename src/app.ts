@@ -6,6 +6,7 @@ import 'reflect-metadata';
 import * as classController from './controllers/classController';
 import * as testController from './controllers/testController';
 import * as subjectController from './controllers/subjectController';
+import * as professorController from './controllers/professorController';
 
 import connectDatabase from './database';
 
@@ -18,6 +19,7 @@ app.get('/health', (req: Request, res: Response) => res.status(200).send('It\'s 
 app.get('/subjects', subjectController.getSubjects);
 app.get('/classes', classController.getClasses);
 app.post('/tests', testController.createTest);
+app.get('/professors', professorController.getProfessors);
 
 export async function init() {
     await connectDatabase();
