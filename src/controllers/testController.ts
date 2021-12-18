@@ -40,3 +40,20 @@ export async function getTestsByProfessor(req: Request, res: Response) {
         return res.status(500).send('Erro desconhecido!');
     }
 }
+
+export async function getTestsBySubject(req: Request, res: Response) {
+    const subjectId = Number(req.params.id);
+
+    if (subjectId % 1 !== 0) return res.status(400).send('O id precisa ser um número inteiro!');
+
+    try {
+        const tests = await testService.getTestsBySubject(subjectId);
+
+        return res.status(200).send(tests);
+    } catch (error) {
+        if (error instanceof NotFound) return res.status(404).send(error.message);
+
+        console.error(error);
+        return res.status(500).send('Erro desconhecido!');
+    }
+}
