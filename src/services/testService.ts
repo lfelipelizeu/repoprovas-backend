@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable import/no-unresolved */
 import { getRepository } from 'typeorm';
 import TestEntity from '../entities/TestEntity';
@@ -6,6 +5,7 @@ import NotFound from '../errors/NotFound';
 import Conflict from '../errors/Conflict';
 import CategoryEntity from '../entities/CategoryEntity';
 import ClassEntity from '../entities/ClassEntity';
+import ProfessorEntity from '../entities/ProfessorEntity';
 
 interface NewTest {
     year: number;
@@ -41,4 +41,25 @@ export async function createTest(test: NewTest): Promise<void> {
         },
         link: test.link,
     });
+}
+
+export async function getTestsByProfessor(professorId: number) {
+    const professor = await getRepository(ProfessorEntity).findOne({
+        id: professorId,
+    });
+    if (!professor) throw new NotFound('Professor não encontrado!');
+
+    const tests = await getRepository(TestEntity).find();
+    const testsFiltered = tests.filter((test) => test.class.professor.id === professor.id);
+
+    return {
+        ...professor,
+        tests: testsFiltered.map((test) => ({
+            id: test.id,
+            name: test.name,
+            subject: test.class.subject.name,
+            category: test.category.name,
+            link: test.link,
+        })),
+    };
 }
