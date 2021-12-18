@@ -7,7 +7,9 @@ export async function getSubjects(req: Request, res: Response) {
     try {
         const subjects = await subjectService.getSubjects();
 
-        return res.status(200).send(subjects);
+        const subjectsWithTestCount = await subjectService.countTestsOnDatabase(subjects);
+
+        return res.status(200).send(subjectsWithTestCount);
     } catch (error) {
         console.error(error);
         return res.status(500).send('Erro desconhecido!');
