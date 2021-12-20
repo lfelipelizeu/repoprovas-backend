@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable import/no-unresolved */
 import { getConnection, getRepository } from 'typeorm';
 import supertest from 'supertest';

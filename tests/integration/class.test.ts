@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-undef */
 import { getConnection } from 'typeorm';
 import supertest from 'supertest';
 import faker from 'faker';
