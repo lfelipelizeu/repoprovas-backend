@@ -3,9 +3,10 @@ import './setup';
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import 'reflect-metadata';
-import * as classController from './controllers/classController';
-import * as testController from './controllers/testController';
-import * as subjectController from './controllers/subjectController';
+import subjectRouter from './routers/subjectRouter';
+import classRouter from './routers/classRouter';
+import testRouter from './routers/testRouter';
+import professorRouter from './routers/professorRouter';
 
 import connectDatabase from './database';
 
@@ -15,9 +16,10 @@ app.use(express.json());
 
 app.get('/health', (req: Request, res: Response) => res.status(200).send('It\'s alive!'));
 
-app.get('/subjects', subjectController.getSubjects);
-app.get('/classes', classController.getClasses);
-app.post('/tests', testController.createTest);
+app.use('/subjects', subjectRouter);
+app.use('/classes', classRouter);
+app.use('/tests', testRouter);
+app.use('/professors', professorRouter);
 
 export async function init() {
     await connectDatabase();

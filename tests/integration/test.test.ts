@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable import/no-unresolved */
 import { getConnection, getRepository } from 'typeorm';
 import supertest from 'supertest';
@@ -64,6 +65,58 @@ describe('POST /tests', () => {
         const result = await agent.post('/tests').send(body);
         const { status } = result;
         expect(status).toEqual(201);
+    });
+});
+
+describe('GET /tests/professors/:id', () => {
+    it('should returns 400 for invalid id', async () => {
+        const invalidId = faker.random.word();
+
+        const result = await agent.get(`/tests/professor/${invalidId}`);
+        const { status } = result;
+        expect(status).toEqual(400);
+    });
+
+    it('should returns 404 for not registered professor id', async () => {
+        const invalidId = faker.datatype.number({ min: 1000 });
+
+        const result = await agent.get(`/tests/professor/${invalidId}`);
+        const { status } = result;
+        expect(status).toEqual(404);
+    });
+
+    it('should returns 200 for registered professor id', async () => {
+        const invalidId = faker.datatype.number({ min: 1, max: 7 });
+
+        const result = await agent.get(`/tests/professor/${invalidId}`);
+        const { status } = result;
+        expect(status).toEqual(200);
+    });
+});
+
+describe('GET /tests/subjects/:id', () => {
+    it('should returns 400 for invalid id', async () => {
+        const invalidId = faker.random.word();
+
+        const result = await agent.get(`/tests/subject/${invalidId}`);
+        const { status } = result;
+        expect(status).toEqual(400);
+    });
+
+    it('should returns 404 for not registered subject id', async () => {
+        const invalidId = faker.datatype.number({ min: 1000 });
+
+        const result = await agent.get(`/tests/subject/${invalidId}`);
+        const { status } = result;
+        expect(status).toEqual(404);
+    });
+
+    it('should returns 200 for registered subject id', async () => {
+        const invalidId = faker.datatype.number({ min: 1, max: 7 });
+
+        const result = await agent.get(`/tests/subject/${invalidId}`);
+        const { status } = result;
+        expect(status).toEqual(200);
     });
 });
 

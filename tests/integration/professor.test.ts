@@ -10,9 +10,9 @@ beforeAll(async () => {
     await init();
 });
 
-describe('GET /subjects', () => {
+describe('GET /professors', () => {
     it('should returns 200', async () => {
-        const result = await agent.get('/subjects');
+        const result = await agent.get('/professors');
         const { status } = result;
         expect(status).toEqual(200);
     });
