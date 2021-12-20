@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { getConnection } from 'typeorm';
 import supertest from 'supertest';
 import app, { init } from '../../src/app';
