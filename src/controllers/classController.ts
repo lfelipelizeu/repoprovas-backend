@@ -2,7 +2,6 @@
 /* eslint-disable import/prefer-default-export */
 import { Request, Response } from 'express';
 import * as classService from '../services/classService';
-import NotFound from '../errors/NotFound';
 
 export async function getClasses(req: Request, res: Response) {
     const subjectId = req.query.subject;
@@ -15,7 +14,7 @@ export async function getClasses(req: Request, res: Response) {
 
         return res.status(200).send(classes);
     } catch (error) {
-        if (error instanceof NotFound) return res.status(404).send(error.message);
+        if (error.name === 'NotFound') return res.status(404).send(error.message);
 
         console.error(error);
         return res.status(500).send('Erro desconhecido!');
