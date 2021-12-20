@@ -1,5 +1,5 @@
+/* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
-/* eslint-disable import/prefer-default-export */
 import { Request, Response } from 'express';
 import TestSchema from '../validations/TestSchema';
 import * as testService from '../services/testService';
