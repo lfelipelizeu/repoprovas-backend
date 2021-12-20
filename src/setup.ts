@@ -7,8 +7,5 @@ if (process.env.NODE_ENV === 'test') {
 if (process.env.NODE_ENV === 'dev') {
     path = '.env.dev';
 }
-if (process.env.NODE_ENV === 'production') {
-    path = '.env';
-}
 
 dotenv.config({ path });
