@@ -61,7 +61,7 @@ ALTER TABLE "tests" ADD CONSTRAINT "tests_fk1" FOREIGN KEY ("class_id") REFERENC
 
 
 
--- STOP HERE IF YOU DON'T WANT TO POPULATE THE DATABASE
+-- PARE AQUI SE VOCÊ NÃO DESEJA POPULAR O BANCO
 
 INSERT INTO "subjects" ("name", "period") VALUES ('Introdução à Engenharia Elétrica', 1), ('Programação de Computadores I', 1), ('Circuitos Elétricos', 2), ('Programação de Computadores II', 2), ('Eletromagnetismo', 3), ('Máquinas Elétricas', 3), ('Telecomunicações', 4), ('Sistemas Microprocessados', 4), ('Automação Industrial', 5), ('Sistemas Microcomputadorizados', 5), ('Liderança', 0);
 
